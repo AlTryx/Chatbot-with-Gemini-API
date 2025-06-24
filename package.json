@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/AlTryx/Chatbot-with-Gemini-API#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0"
   }
 }
