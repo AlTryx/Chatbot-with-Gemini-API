@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import chatbotpng from './chatbotpng.png';
 
 function App() {
   const [serverMessage, setServerMessage] = useState('');
+
+  const [inputValue, setInputValue] = useState('');
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
 
   useEffect(() => {
     fetch('http://localhost:3001/')
@@ -18,19 +25,31 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <img src = {chatbotpng} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Gemini React Node.js chatbot.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>
+          Server says: {serverMessage}
+        </p>
+        <p>
+          Ask something!
+        </p>
+
+        <input className ="App-input"
+      type="text"
+      value={inputValue}
+      onChange={handleChange}
+      placeholder="Ask something..."
+      />
+
       </header>
+      
+      <p style={{ marginTop: "12px", color: "#555" }}>
+        You typed: <strong>{inputValue}</strong>
+      </p>
     </div>
+    
   );
 }
 

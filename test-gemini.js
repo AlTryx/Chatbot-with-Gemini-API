@@ -9,10 +9,10 @@ if (!API_KEY) {
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 
-async function testGemini(){
+async function testGemini(question){
     try{
         const model = genAI.getGenerativeModel({model: "gemini-2.0-flash"});
-        const result = await model.generateContent("Tell me something funny");
+        const result = await model.generateContent(question);
         const response = await result.response;
         const responseText = response.text();
         console.log("response is: ", responseText);
@@ -21,4 +21,4 @@ async function testGemini(){
     }
 }
 
-testGemini();
+testGemini("What's the weather like in Varna today");
