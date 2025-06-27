@@ -53,7 +53,7 @@ function App() {
       <header className="App-header">
         <img src = {chatbotpng} className="App-logo" alt="logo" />
         <p>
-          Gemini React Node.js chatbot.
+          Gemini React Node.js chatbot - AleksGPT.
         </p>
         <p>
           Server says: {serverMessage}
@@ -61,17 +61,18 @@ function App() {
         <p>
           Ask something!
         </p>
-
-        <input className ="App-input"
-          type="text"
-          value={inputValue}
-          onChange={handleChange}
-          placeholder="Ask something..."
-        />
-        <br/>
-        <button onClick={handleAsk} className = "App-button">
-          {isLoading ? 'Thinking...' : 'Ask'}
-        </button>
+        <div className = "input-container">
+          <input className ="App-input"
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="Ask something..."
+          />
+        
+          <button onClick={handleAsk} className = "App-button">
+            {isLoading ? 'Thinking...' : 'Ask'}
+          </button>
+        </div>
         {botReply && (
           <div className="App-bot-reply">
             <p>Bot says: {botReply}</p>

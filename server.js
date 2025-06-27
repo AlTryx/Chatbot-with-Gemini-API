@@ -2,8 +2,8 @@ const express  = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const API_KEY = process.env.GEMINI_API_KEY;
 require('dotenv').config();
+const API_KEY = process.env.GEMINI_API_KEY;
 
 const app = express();
 const PORT = 3001;
