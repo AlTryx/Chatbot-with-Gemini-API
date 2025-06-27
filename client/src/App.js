@@ -68,6 +68,7 @@ function App() {
           onChange={handleChange}
           placeholder="Ask something..."
         />
+        <br/>
         <button onClick={handleAsk} className = "App-button">
           {isLoading ? 'Thinking...' : 'Ask'}
         </button>
