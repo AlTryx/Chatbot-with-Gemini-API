@@ -56,9 +56,6 @@ function App() {
           Gemini React Node.js chatbot - AleksGPT.
         </p>
         <p>
-          Server says: {serverMessage}
-        </p>
-        <p>
           Ask something!
         </p>
         <div className = "input-container">
