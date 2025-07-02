@@ -405,4 +405,7 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+
+#files from my project
 .env
+venv/

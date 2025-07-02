@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import chatbotpng from './chatbotpng.png';
+import WebcamComponent from './WebcamComponent';
 
 function App() {
   const [serverMessage, setServerMessage] = useState('');
@@ -51,22 +52,17 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src = {chatbotpng} className="App-logo" alt="logo" />
-        <p>
-          Gemini React Node.js chatbot - AleksGPT.
-        </p>
-        <p>
-          Ask something!
-        </p>
-        <div className = "input-container">
-          <input className ="App-input"
+        <img src={chatbotpng} className="App-logo" alt="logo" />
+        <p>Gemini React Node.js chatbot - AleksGPT.</p>
+        <p>Ask something!</p>
+        <div className="input-container">
+          <input className="App-input"
             type="text"
             value={inputValue}
             onChange={handleChange}
             placeholder="Ask something..."
           />
-        
-          <button onClick={handleAsk} className = "App-button">
+          <button onClick={handleAsk} className="App-button">
             {isLoading ? 'Thinking...' : 'Ask'}
           </button>
         </div>
@@ -75,9 +71,10 @@ function App() {
             <p>Bot says: {botReply}</p>
           </div>
         )}
+        <hr style={{ width: '100%', margin: '30px 0' }} />
+        <WebcamComponent />
       </header>
     </div>
-    
   );
 }
 export default App;
