@@ -12,7 +12,7 @@ const WebcamComponent = () => {
         videoRef.current.srcObject = stream;
         setIsCameraOn(true);
       } catch (err) {
-        alert('Неуспешно стартиране на камерата!');
+        alert('cant start camera: ' + err.message);
       }
     }
   };

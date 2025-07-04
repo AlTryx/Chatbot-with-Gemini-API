@@ -1,0 +1,206 @@
+body {
+    display: flex;
+    background-image: url(backgroundLogin.png);
+    background-size:cover;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 40px;
+    top:40px;
+}
+
+ul li {
+    position: relative;
+    margin-right: 40px;
+}
+ul li a {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+    font-size:large;
+}
+
+.hover-div{ 
+    background: rgb(74, 74, 182);
+    height: 2px;
+    width: 0px;
+    transition: width 0.3s ease;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+ul li:hover .hover-div {
+    width: 100%;
+}
+
+.login-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    margin-top: -250px;
+    margin-left: -250px;
+    backdrop-filter: blur(5px);
+    border-radius: 4%;
+    border: 1px solid black;
+    font-size: large;
+    font-family: Garamond, serif;
+}
+
+h1 {
+    position: absolute;
+    left:40%;
+    top:36%;
+}
+
+#user {
+    position: absolute;
+    left: 20%;
+    top:5%;
+    width: 300px;
+    height:180px;
+}
+
+.line {
+    height:1px;
+    width:300px;
+    background-color: rgb(74, 74, 182);
+    position:absolute;
+    top: 51%;
+    left:20%;
+}
+
+.label-email {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+}
+
+#in-em {
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius:4px;
+    font-size: 16px;
+    backdrop-filter: blur(4px);
+    background-image:url('mail-outline.svg');
+    background-size:10%;
+    background-position: 5px;
+    background-repeat: no-repeat;
+    padding: 6px 20px 6px 40px;
+    position: absolute;
+    top: 55%;
+    left: 25%;
+}
+
+#in-em:focus {
+    border: 3px solid #555;
+}
+
+.line1{
+    height:1px;
+    width:300px;
+    background-color: rgb(74, 74, 182);
+    position:absolute;
+    top: 66%;
+    left:20%;
+}
+
+.label-pass {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+}
+
+#in-pass {
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius:4px;
+    font-size: 16px;
+    backdrop-filter: blur(4px);
+    background-image:url('passw-icon.png');
+    background-size:10%;
+    background-position: 5px;
+    background-repeat: no-repeat;
+    padding: 6px 20px 6px 40px;
+    position: absolute;
+    top: 70%;
+    left: 25%;
+    
+}
+
+#in-pass:focus {
+    border: 3px solid #555;
+  }
+
+.btn-login {
+    background-color: rgb(74, 74, 182);
+    position: absolute;
+    top: 86.6%;
+    left:20%;
+    border:aliceblue 2px solid;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    font-size: medium;
+    font-weight: bold;
+    color:aliceblue;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color:aliceblue;
+    color: rgb(74, 74, 182);
+    border-color: rgb(74, 74, 182);
+    transform: scale(1.1);
+}
+
+#in-check{
+    position: absolute;
+}
+
+.line2 {
+    height:1px;
+    width:300px;
+    background-color: rgb(74, 74, 182);
+    position:absolute;
+    top: 80.6%;
+    left:20%;
+}
+
+.line3 {
+    height:1px;
+    width:150px;
+    background-color: rgb(74, 74, 182);
+    position:absolute;
+    top: 54%;
+    left:13%;
+}
+
+.forg-pass-container {
+    background-color: aliceblue;
+    border:rgb(74, 74, 182) 2px solid;
+    border-radius:10px;
+    position: absolute;
+    top: 85%;
+    left: 37%;
+    right: 20%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.forg-pass-container input {
+    left: 50%;
+    text-align: center;
+}
+
+.forg-pass-container .psw{
+    text-align: end;
+}
+

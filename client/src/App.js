@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import chatbotpng from './chatbotpng.png';
+import chatbotpng from './images/chatbot.png';
 import WebcamComponent from './WebcamComponent';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
-  const handleChange = (event) => {
+  const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
@@ -59,7 +59,7 @@ function App() {
           <input className="App-input"
             type="text"
             value={inputValue}
-            onChange={handleChange}
+            onChange={handleInputChange}
             placeholder="Ask something..."
           />
           <button onClick={handleAsk} className="App-button">
@@ -71,7 +71,7 @@ function App() {
             <p>Bot says: {botReply}</p>
           </div>
         )}
-        <hr style={{ width: '100%', margin: '30px 0' }} />
+        <br></br>
         <WebcamComponent />
       </header>
     </div>
