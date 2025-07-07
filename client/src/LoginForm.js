@@ -1,41 +1,52 @@
+
 import React, { useState } from 'react';
 import './styles.css';
+import userIcon from './images/user-icon.webp';
+import emailIcon from './images/email.png';
+import passwIcon from './images/passw-icon.png';
+import backgroundLogin from './images/backgroundLogin.png';
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Add login logic here
-    alert(`Email: ${email}\nPassword: ${password}\nRemember me: ${remember}`);
+    // TODO: Add real login logic here
+    if (email && password) {
+      onLogin && onLogin();
+    }
   };
 
   return (
-    <div className="login-container">
-      <img id="user" src="user-icon.webp" alt="User Icon" />
+    <div className="login-container" style={{ backgroundImage: `url(${backgroundLogin})`, backgroundSize: 'cover', minHeight: '100vh' }}>
+      <img id="user" src={userIcon} alt="User Icon" style={{ width: 80, height: 80, margin: '20px auto', display: 'block' }} />
       <h1>Sign in</h1>
       <form onSubmit={handleSubmit}>
-        <label className="label-email" htmlFor="email"><b></b></label>
-        <input
-          id="in-em"
-          type="email"
-          placeholder="Enter email"
-          required
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
+          <img src={emailIcon} alt="email" style={{ width: 24, marginRight: 8 }} />
+          <input
+            id="in-em"
+            type="email"
+            placeholder="Enter email"
+            required
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </div>
         <div className="line"></div>
-        <label className="label-pass" htmlFor="psw"><b></b></label>
-        <input
-          id="in-pass"
-          type="password"
-          placeholder="Enter password"
-          required
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
+          <img src={passwIcon} alt="password" style={{ width: 24, marginRight: 8 }} />
+          <input
+            id="in-pass"
+            type="password"
+            placeholder="Enter password"
+            required
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </div>
         <div className="line1"></div>
         <div className="line2"></div>
         <button className="btn-login" type="submit">Login</button>
