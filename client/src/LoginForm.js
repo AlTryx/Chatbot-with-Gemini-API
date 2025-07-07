@@ -13,7 +13,10 @@ const LoginForm = ({ onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Add real login logic here
+    
+    
+
+
     if (email && password) {
       onLogin && onLogin();
     }
@@ -32,7 +35,7 @@ const LoginForm = ({ onLogin }) => {
             placeholder="Enter email"
             required
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange = {e => setEmail(e.target.value)}
           />
         </div>
         <div className="line"></div>
