@@ -1,26 +1,24 @@
 
 .App {
-  min-height: 100vh;
-  min-width: 100vw;
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
-  background: none;
+  background: #282c34;
 }
 
 .App-header {
-  width: 100vw;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background: white;
+  background: #282c34;
   box-sizing: border-box;
   padding-top: 40px;
+  font-size: calc(10px + 1vmin);
+  color: #ffffff;
 }
 
 .App-logo {
@@ -36,17 +34,6 @@
   .App-logo:hover {
     transform: scale(1.2) rotate(10deg);
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 1vmin);
-  color: white;
 }
 
 .App-link {
@@ -88,9 +75,14 @@
 }
 
 .cameraContainer {
-  text-align: 'center';
-  margin: '20px';
+  text-align: center;
+  margin: 20px;
 }
+
 .videoContainer {
-  margin-top: '20px';
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

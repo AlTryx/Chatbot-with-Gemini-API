@@ -1,39 +1,63 @@
 import React, { useRef, useState } from 'react';
+import Webcam from 'react-webcam';
+import './WebcamComponent.css';
 
 const WebcamComponent = () => {
-  const videoRef = useRef(null);
+  const webcamRef = useRef(null);
   const [isCameraOn, setIsCameraOn] = useState(false);
-  let stream = null;
+  const [screenshot, setScreenshot] = useState(null);
 
-  const startCamera = async () => {
-    if (!isCameraOn) {
-      try {
-        stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        videoRef.current.srcObject = stream;
-        setIsCameraOn(true);
-      } catch (err) {
-        alert('cant start camera: ' + err.message);
-      }
-    }
+  const videoConstraints = {
+    width: 300,
+    height: 200,
+    facingMode: 'user',
   };
 
+  const startCamera = () => setIsCameraOn(true);
   const stopCamera = () => {
-    if (videoRef.current && videoRef.current.srcObject) {
-      const tracks = videoRef.current.srcObject.getTracks();
-      tracks.forEach(track => track.stop());
-      videoRef.current.srcObject = null;
-      setIsCameraOn(false);
+    setIsCameraOn(false);
+    setScreenshot(null);
+  };
+
+  const takeScreenshot = () => {
+    if (webcamRef.current) {
+      const imageSrc = webcamRef.current.getScreenshot();
+      setScreenshot(imageSrc);
+
+      //backendsend the ss
+     
+      alert('Скрийншотът е направен и е готов за изпращане към DeepFace!');
     }
   };
 
   return (
-    <div className = "cameraContainer">
-      <div>
-        <button onClick={startCamera} disabled={isCameraOn} style={{ marginRight: '10px' }}>Включи камера</button>
-        <button onClick={stopCamera} disabled={!isCameraOn}>Изключи камера</button>
+    <div className="cameraContainer">
+      <div className="webcam-controls">
+        <button className="StartCamera" onClick={startCamera} disabled={isCameraOn}>Включи камера</button>
+        <button className="StopCamera" onClick={stopCamera} disabled={!isCameraOn}>Изключи камера</button>
+        <button className="TakeScreenshot" onClick={takeScreenshot} disabled={!isCameraOn}>Снимай и изпрати</button>
       </div>
-      <div className = "videoContainer">
-        <video ref={videoRef} width="400" height="300" autoPlay style={{ border: '2px solid #333', background: '#000' }} />
+      <div className="webcam-flex-row">
+        {isCameraOn && (
+          <div className="webcam-box">
+            <Webcam
+              className="webcam-video"
+              audio={false}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+              width={320}
+              height={240}
+              videoConstraints={videoConstraints}
+            />
+            <div className="webcam-label">Камера</div>
+          </div>
+        )}
+        {screenshot && (
+          <div className="webcam-box">
+            <img src={screenshot} alt="Скрийншот" className="webcam-screenshot" />
+            <div className="webcam-label">Скрийншот</div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -23,12 +23,12 @@ const LoginForm = ({ onLogin }) => {
   };
 
   return (
-    <div className="login-container" style={{ backgroundImage: `url(${backgroundLogin})`, backgroundSize: 'cover', minHeight: '100vh' }}>
-      <img id="user" src={userIcon} alt="User Icon" style={{ width: 80, height: 80, margin: '20px auto', display: 'block' }} />
+    <div className="login-container login-bg">
+      <img id="user" className="login-user-icon" src={userIcon} alt="User Icon" />
       <h1>Sign in</h1>
       <form onSubmit={handleSubmit}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
-          <img src={emailIcon} alt="email" style={{ width: 24, marginRight: 8 }} />
+        <div className="login-input-row">
+          <img src={emailIcon} alt="email" className="login-input-icon" />
           <input
             id="in-em"
             type="email"
@@ -39,8 +39,8 @@ const LoginForm = ({ onLogin }) => {
           />
         </div>
         <div className="line"></div>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
-          <img src={passwIcon} alt="password" style={{ width: 24, marginRight: 8 }} />
+        <div className="login-input-row">
+          <img src={passwIcon} alt="password" className="login-input-icon" />
           <input
             id="in-pass"
             type="password"

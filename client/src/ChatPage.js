@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import chatbotpng from './images/chatbot.png';
 import WebcamComponent from './WebcamComponent';
 import './App.css';
+import './Chat.css';
 
 const ChatPage = () => {
   const [serverMessage, setServerMessage] = useState('');
@@ -54,23 +55,26 @@ const ChatPage = () => {
         <img src={chatbotpng} className="App-logo" alt="logo" />
         <p>Gemini React Node.js Chatbot - AleksGPT.</p>
         <p>Ask something!</p>
-        <div className="input-container">
-          <input className="App-input"
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder="Ask something..."
-          />
-          <button onClick={handleAsk} className="App-button">
-            {isLoading ? 'Thinking...' : 'Ask'}
-          </button>
-        </div>
+        <div className = "box">
+            <div className="input-container">
+                <input className="App-input"
+                    type="text"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    placeholder="Ask something..."
+                />
+                <button onClick={handleAsk} className="App-button">
+                    {isLoading ? 'Thinking...' : 'Ask'}
+                </button>
+            </div>
         {botReply && (
           <div className="App-bot-reply">
             <p>Bot says: {botReply}</p>
           </div>
         )}
         <br />
+        </div>
+        
         <WebcamComponent />
       </header>
     </div>
