@@ -9,6 +9,15 @@ const ChatPage = () => {
   const [botReply, setBotReply] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const [messages, setMessages] = useState([]);
+
+  {messages.map((message, index) => (
+    <div key = {index} className = {message.isBot ? 'bot-message' : 'user-message'}>
+      <div className = "message-content">
+        {message.text}
+      </div>
+    </div>
+  ))}
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -42,8 +51,6 @@ const ChatPage = () => {
       setBotReply(data.reply || 'No reply.');
     } catch (err) {
       console.error('Error:', err);
-      const errorText = await err?.response?.text?.();
-      console.log('Error body:', errorText);
       setBotReply('Error communicating with server.');
     }
     setIsLoading(false);
@@ -54,27 +61,30 @@ const ChatPage = () => {
       <header className="App-header">
         <img src={chatbotpng} className="App-logo" alt="logo" />
         <p>Gemini React Node.js Chatbot - AleksGPT.</p>
-        <p>Ask something!</p>
-        <div className = "box">
-            <div className="input-container">
-                <input className="App-input"
-                    type="text"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    placeholder="Ask something..."
-                />
-                <button onClick={handleAsk} className="App-button">
-                    {isLoading ? 'Thinking...' : 'Ask'}
-                </button>
-            </div>
-        {botReply && (
-          <div className="App-bot-reply">
-            <p>Bot says: {botReply}</p>
-          </div>
-        )}
-        <br />
-        </div>
-        
+        <div className = "box">    
+          <div className = "bot">
+            {botReply && (
+              <>
+                <div className = "bot-icon"></div>
+                <div className="bot message">
+                  {botReply}
+                </div>
+              </>
+            )}
+          </div>  
+          <br />
+          <div className="input-container">
+            <input className="App-input"
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              placeholder="Ask something..."
+            />
+            <button onClick={handleAsk} className="App-button">
+              {isLoading ? 'Thinking...' : 'Ask'}
+            </button>
+          </div>   
+        </div>   
         <WebcamComponent />
       </header>
     </div>

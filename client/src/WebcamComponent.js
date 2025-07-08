@@ -45,8 +45,8 @@ const WebcamComponent = () => {
               audio={false}
               ref={webcamRef}
               screenshotFormat="image/jpeg"
-              width={320}
-              height={240}
+              width={720}
+              height={640}
               videoConstraints={videoConstraints}
             />
             <div className="webcam-label">Камера</div>

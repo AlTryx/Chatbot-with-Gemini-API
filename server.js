@@ -19,7 +19,7 @@ if (!API_KEY) {
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 app.get('/', (req, res) => {
-  res.send('Hello from the server!');
+  res.send('Puuuuuuuu');
 });
 
 app.post('/ask', async (req, res) => {

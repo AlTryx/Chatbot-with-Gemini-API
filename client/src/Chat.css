@@ -6,19 +6,31 @@ body{
   font:.9em/1.5 'Roboto';
   cursor:default;
 }
+.box {
+  width:100%;
+  max-width:1200px;
+  min-height: 600px;
+  margin:0 auto;
+  padding:1em;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background-color:#686868;
+  border-radius: 10px 10px 10px 10px;
+}
 .message{
+  padding:1em;
   width:calc(100% - 100px);
   border-radius:15px;
-  padding:1em;
 }
 .bot .message{
-  background:#f8f8f8;
+  background:#282c34;
 }
 .bot{
   display:flex;
   align-items:flex-end;
 }
-.icon{
+.bot-icon{
   --size:40px;
   width:var(--size);
   height:var(--size);
@@ -29,7 +41,7 @@ body{
   margin-right:.8em;
   position:relative;
 }
-.icon::after{
+.bot-icon::after{
   content:' ';
   position:absolute;
   width:10px;
