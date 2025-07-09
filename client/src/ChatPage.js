@@ -61,29 +61,45 @@ const ChatPage = () => {
       <header className="App-header">
         <img src={chatbotpng} className="App-logo" alt="logo" />
         <p>Gemini React Node.js Chatbot - AleksGPT.</p>
-        <div className = "box">    
-          <div className = "bot">
-            {botReply && (
-              <>
-                <div className = "bot-icon"></div>
-                <div className="bot message">
-                  {botReply}
-                </div>
-              </>
-            )}
-          </div>  
-          <br />
-          <div className="input-container">
-            <input className="App-input"
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              placeholder="Ask something..."
-            />
-            <button onClick={handleAsk} className="App-button">
-              {isLoading ? 'Thinking...' : 'Ask'}
-            </button>
-          </div>   
+        <div className = "box">
+          <div className = "chat-history-container">
+            <div className = "chat-history">
+              <p>chat</p>
+              <p>chat</p>
+              <p>chat</p>
+              <p>chat</p>
+              <p>chat</p>
+              <p>chat</p>
+              <p>chat</p>
+              <p>chat</p>
+              <p>chat</p>
+              <p>chat</p>
+            </div>
+          </div>
+          <div className = "chat-main">
+            <div className = "bot">
+              {botReply && (
+                <>
+                  <div className = "bot-icon"></div>
+                  <div className="bot message">
+                    {botReply}
+                  </div>
+                </>
+              )}
+            </div> 
+            <br />
+            <div className="input-container">
+              <input className="App-input"
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+                placeholder="Ask something..."
+              />
+              <button onClick={handleAsk} className="App-button">
+                {isLoading ? 'Thinking...' : 'Ask'}
+              </button>
+            </div> 
+          </div>            
         </div>   
         <WebcamComponent />
       </header>

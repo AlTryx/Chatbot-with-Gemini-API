@@ -23,12 +23,31 @@ const WebcamComponent = () => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
       setScreenshot(imageSrc);
-
-      //backendsend the ss
-     
-      alert('Скрийншотът е направен и е готов за изпращане към DeepFace!');
+      sendScreenshotToServer(imageSrc);
     }
   };
+
+  const sendScreenshotToServer = (imageSrc) => {
+    fetch('http://localhost:3001/api/uploadScreenshot', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: imageSrc })
+    })
+    .then(async res => {
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`HTTP ${res.status}: ${text}`);
+      }
+      return res.json();
+    })
+    .then(data => {
+      alert(data.message);
+    })
+    .catch(err => {
+      alert('Грешка при изпращане на снимката!\n' + err.message);
+      console.error('Fetch error:', err);
+    });
+  }
 
   return (
     <div className="cameraContainer">
@@ -44,9 +63,9 @@ const WebcamComponent = () => {
               className="webcam-video"
               audio={false}
               ref={webcamRef}
-              screenshotFormat="image/jpeg"
-              width={720}
-              height={640}
+              screenshotFormat="image/png"
+              width={640}
+              height={480}
               videoConstraints={videoConstraints}
             />
             <div className="webcam-label">Камера</div>

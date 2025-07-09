@@ -8,8 +8,15 @@ const API_KEY = process.env.GEMINI_API_KEY;
 const app = express();
 const PORT = 3001;
 
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+}));
+app.use(bodyParser.json({ limit: '10mb' }));
+
+const handleScreenshotRoute = require('./client/src/api/routes/handleScreenshot');
+app.use('/api', handleScreenshotRoute);
 
 if (!API_KEY) {
     console.error("GEMINI_API_KEY is not set. Please set it in your environment variables.");
@@ -17,6 +24,11 @@ if (!API_KEY) {
 }
 
 const genAI = new GoogleGenerativeAI(API_KEY);
+
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
 
 app.get('/', (req, res) => {
   res.send('Puuuuuuuu');
@@ -36,6 +48,10 @@ try {
   console.error('Error generating content from Gemini:', error);
   res.status(500).json({ error: 'Failed to get response from Gemini' });
 }
+});
+
+app.use((req, res) => {
+  res.status(404).send(`Not found: ${req.method} ${req.url}`);
 });
 
 app.listen(PORT, () => {
