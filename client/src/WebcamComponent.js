@@ -19,16 +19,18 @@ const WebcamComponent = () => {
     setScreenshot(null);
   };
 
+//to node .js
   const takeScreenshot = () => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
       setScreenshot(imageSrc);
-      sendScreenshotToServer(imageSrc);
+      sendScreenshotToRecognition(imageSrc);
     }
   };
 
-  const sendScreenshotToServer = (imageSrc) => {
-    fetch('http://localhost:3001/api/uploadScreenshot', {
+ //to node.js recognizeFace, then to api flask
+  const sendScreenshotToRecognition = (imageSrc) => {
+    fetch('http://localhost:3001/api/recognizeFace', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ image: imageSrc })
@@ -41,13 +43,15 @@ const WebcamComponent = () => {
       return res.json();
     })
     .then(data => {
-      alert(data.message);
+      //identity -> razpoznatiq profil ili unknown
+      alert(`Разпознат профил: ${data.identity}`);
+      //tuk she se smenq profila v chatbota
     })
     .catch(err => {
-      alert('Грешка при изпращане на снимката!\n' + err.message);
+      alert('Грешка при разпознаване на лицето!\n' + err.message);
       console.error('Fetch error:', err);
     });
-  }
+  };
 
   return (
     <div className="cameraContainer">

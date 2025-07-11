@@ -2,13 +2,11 @@ const fs = require('fs');
 const {spawn} = require('child_process');
 
 exports.handleScreenshot = (image, callback) => {
-    // Изтрий стария screenshot.jpg, ако съществува
     try { fs.unlinkSync('screenshot.jpg'); } catch (e) {}
 
     // Премахване на "data:image/png;base64," от началото на изображението
     const base64Data = image.replace(/^data:image\/png;base64,/, "");
 
-    // Записване на изображението в PNG файл
     fs.writeFile('screenshot.png', base64Data, 'base64', (err) => {
         if (err) {
             console.error('Грешка при запис на изображението:', err);

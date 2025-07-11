@@ -19,6 +19,7 @@
   "homepage": "https://github.com/AlTryx/Chatbot-with-Gemini-API#readme",
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "axios": "^1.10.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "dotnet": "^1.1.4",

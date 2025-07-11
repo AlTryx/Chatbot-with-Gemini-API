@@ -9,11 +9,9 @@ import cv2
 import uuid
 
 img = cv2.imread("screenshot.png")
-if img is not None:
-    img = cv2.resize(img, (300, 200))
 print("Image shape:", img.shape if img is not None else "None")
 try:
-    faces = DeepFace.extract_faces(img, detector_backend='opencv')
+    faces = DeepFace.extract_faces(img, detector_backend='retinaface')
     if not faces:
         print("No face detected")
     else:
@@ -22,6 +20,6 @@ try:
             face_img = face["face"]
             filename = f"faces/face_{uuid.uuid4().hex[:8]}.jpg"
             cv2.imwrite(filename, face_img)
-        print("Face detected and saved")
+        print("Face recognised and saved")
 except Exception as e:
     print("No face detected")
