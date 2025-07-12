@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
 const API_KEY = process.env.GEMINI_API_KEY;
+const recognizeFaceRoute = require('./client/src/api/routes/recognizeFace');
 
 const app = express();
 const PORT = 3001;
@@ -15,8 +16,7 @@ app.use(cors({
 }));
 app.use(bodyParser.json({ limit: '10mb' }));
 
-const handleScreenshotRoute = require('./client/src/api/routes/handleScreenshot');
-app.use('/api', handleScreenshotRoute);
+app.use('/api/recognizeFace', recognizeFaceRoute);
 
 if (!API_KEY) {
     console.error("GEMINI_API_KEY is not set. Please set it in your environment variables.");
@@ -29,6 +29,16 @@ app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
 });
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  if(email && password) {
+    // Here you would typically check the credentials against a database
+    // For simplicity, we are just returning a dummy token
+    res.json({ token: 'test123' });
+  } else {
+    res.status(400).json({ error: 'Email and password are required' });
+}});
 
 app.get('/', (req, res) => {
   res.send('Puuuuuuuu');

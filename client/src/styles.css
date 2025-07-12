@@ -1,7 +1,9 @@
 .login-bg {
     background-image: url(./images/backgroundLogin.png);
     background-size: cover;
+    background-position: center;
     min-height: 100vh;
+    width: 100%;
 }
 
 .login-user-icon {

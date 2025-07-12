@@ -6,6 +6,7 @@ const WebcamComponent = () => {
   const webcamRef = useRef(null);
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [screenshot, setScreenshot] = useState(null);
+  const [username, setUsername] = useState('');
 
   const videoConstraints = {
     width: 300,
@@ -30,10 +31,14 @@ const WebcamComponent = () => {
 
  //to node.js recognizeFace, then to api flask
   const sendScreenshotToRecognition = (imageSrc) => {
+    if (!username) {
+      alert('Моля, въведете име на профил!');
+      return;
+    }
     fetch('http://localhost:3001/api/recognizeFace', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ image: imageSrc })
+      body: JSON.stringify({ image: imageSrc, name: username })
     })
     .then(async res => {
       if (!res.ok) {
@@ -43,13 +48,13 @@ const WebcamComponent = () => {
       return res.json();
     })
     .then(data => {
-      //identity -> razpoznatiq profil ili unknown
       alert(`Разпознат профил: ${data.identity}`);
       //tuk she se smenq profila v chatbota
     })
-    .catch(err => {
-      alert('Грешка при разпознаване на лицето!\n' + err.message);
-      console.error('Fetch error:', err);
+    .catch(async (err) => {
+      const errorMessage = await err.message;
+      console.error('Fetch error:', errorMessage);
+      alert('Грешка при разпознаване на лицето!\n' + errorMessage);
     });
   };
 
@@ -60,6 +65,14 @@ const WebcamComponent = () => {
         <button className="StopCamera" onClick={stopCamera} disabled={!isCameraOn}>Изключи камера</button>
         <button className="TakeScreenshot" onClick={takeScreenshot} disabled={!isCameraOn}>Снимай и изпрати</button>
       </div>
+      <input
+        type="text"
+        value={username}
+        placeholder="Име на профил"
+        onChange={(e) => setUsername(e.target.value)}
+        disabled={!isCameraOn}
+        className="profile-name-input"
+      />
       <div className="webcam-flex-row">
         {isCameraOn && (
           <div className="webcam-box">

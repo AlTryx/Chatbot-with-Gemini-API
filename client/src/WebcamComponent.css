@@ -21,6 +21,7 @@
 }
 
 .webcam-flex-row {
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -66,4 +67,12 @@
   font-size: 1rem;
   color: #3a7bd5;
   font-weight: 500;
+}
+
+.profile-name-input {
+  margin-top: 10px;
+  padding: 6px 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
