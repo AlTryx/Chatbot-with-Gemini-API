@@ -19,11 +19,11 @@ const WebcamComponent = () => {
     setScreenshot(null);
   };
 
-//to node .js
   const takeScreenshot = () => {
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
       setScreenshot(imageSrc);
+      //send screenshot to detection
       sendScreenshotToRecognition(imageSrc);
     }
   };
